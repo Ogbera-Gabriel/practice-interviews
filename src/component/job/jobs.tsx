@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./jobs.css";
+import { Link } from "react-router-dom";
 
 interface Job {
   id: number;
@@ -45,7 +46,10 @@ const Jobs = () => {
 
   return (
     <div>
-      <h1>Hacker News Jobs Board</h1>
+      <div>
+      <Link to="/">HomePage</Link>
+      </div>
+      <h1 style={{color: "orange"}}>Hacker News Jobs Board</h1>
       <div className="job-wrapper">
         {jobsInfo.map((job: Job, index: number) => (
           <div key={index} className="jobs-wrapper">
@@ -57,7 +61,7 @@ const Jobs = () => {
           </div>
         ))}
       </div>
-      {!endPage &&<button onClick={fetchIds}>Load more jobs</button>}
+      {!endPage &&<button style={{backgroundColor: "orange"}} onClick={fetchIds}>Load more jobs</button>}
     </div>
   );
 };

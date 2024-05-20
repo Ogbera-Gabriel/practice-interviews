@@ -18,6 +18,9 @@ export default function HomePage() {
                     <li className='nav-item'>
                         <Link to="/jobs" className='nav-link'>Jobs</Link>
                     </li>
+                    <li className='nav-item'>
+                        <Link to="/time" className='nav-link'>Clock</Link>
+                    </li>
                 </ul>
             </nav>
             <h1>Welcome to Star Wars Page</h1>

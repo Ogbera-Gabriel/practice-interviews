@@ -1,0 +1,10 @@
+.digital-clock {
+    font-family: 'Orbitron', sans-serif; /* Use a digital clock font */
+    font-size: 4rem; /* Adjust size as needed */
+    color: #00FF00; /* Green color */
+    text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 40px #00FF00;
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    display: inline-block;
+}

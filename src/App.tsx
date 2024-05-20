@@ -6,6 +6,7 @@ import Planets from './component/planets/planet';
 import HomePage from './component/home/homepage';
 import Tictactoe from './component/tic-tac-toe/tictactoe';
 import Jobs from './component/job/jobs';
+import Clock from './component/digital-clock/digital';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/planets" element={<Planets/>} />
         <Route path='/game' element={<Tictactoe/>} />
         <Route path="/jobs" element={<Jobs/>} />
+        <Route path="/time" element={<Clock/>} />
        </Routes>
     </Router>
   );
