@@ -1,0 +1,17 @@
+.job-wrapper {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.jobs-wrapper {
+    border: solid black 1px;
+    padding: 10px;
+}
+
+.job-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
