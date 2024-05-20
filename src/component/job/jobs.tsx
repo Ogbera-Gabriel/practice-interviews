@@ -29,16 +29,23 @@ const Jobs = () => {
     
   };
 
+ 
   const fetchJobInfo = async (ids: number[]) => {
-    const response = await Promise.all(
-      ids.map((id: any) =>
-        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-      )
-    );
-    const jobInfo = await Promise.all(response.map((res: any) => res.json()));
-    setJobsInfo((prev) => [...prev,...jobInfo]);
+    const jobInfo: Job[] = [];
+
+    for (const id of ids) {
+      try {
+        const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+        const data = await response.json();
+        jobInfo.push(data);
+      } catch (error) {
+        console.error(`Error fetching job info for ID ${id}:`, error);
+      }
+    }
+
+    setJobsInfo((prev) => [...prev, ...jobInfo]);
     setPage((prev) => prev + 1);
-  };
+  }
 
   useEffect(() => {
     fetchIds();
