@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import "./jobs.css";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
-interface Job {
+interface Job { 
   id: number;
   title: string;
   type: string;
@@ -30,22 +31,42 @@ const Jobs = () => {
   };
 
  
+  // const fetchJobInfo = async (ids: number[]) => {
+  //   const jobInfo: Job[] = [];
+
+  //   for (const id of ids) {
+  //     try {
+  //       const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
+  //       const data = await response.json();
+  //       jobInfo.push(data);
+  //     } catch (error) {
+  //       console.error(`Error fetching job info for ID ${id}:`, error);
+  //     }
+  //   }
+
+  //   setJobsInfo((prev) => [...prev, ...jobInfo]);
+  //   setPage((prev) => prev + 1);
+  // }
+
   const fetchJobInfo = async (ids: number[]) => {
-    const jobInfo: Job[] = [];
-
-    for (const id of ids) {
-      try {
-        const response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`);
-        const data = await response.json();
-        jobInfo.push(data);
-      } catch (error) {
-        console.error(`Error fetching job info for ID ${id}:`, error);
-      }
+    try {
+      const jobInfoPromises = ids.map(id =>
+        fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+      );
+  
+      const jobInfo = await Promise.all(jobInfoPromises);
+      setJobsInfo((prev) => [...prev,...jobInfo]);
+      setPage((prev) => prev + 1);
+    } catch (error) {
+      toast.error('Error fetching job info:');
     }
-
-    setJobsInfo((prev) => [...prev, ...jobInfo]);
-    setPage((prev) => prev + 1);
-  }
+  };
 
   useEffect(() => {
     fetchIds();

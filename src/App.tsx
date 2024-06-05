@@ -7,6 +7,8 @@ import HomePage from './component/home/homepage';
 import Tictactoe from './component/tic-tac-toe/tictactoe';
 import Jobs from './component/job/jobs';
 import Clock from './component/digital-clock/digital';
+import Test from './component/test/test';
+
 
 
 function App() {
@@ -19,6 +21,7 @@ function App() {
         <Route path='/game' element={<Tictactoe/>} />
         <Route path="/jobs" element={<Jobs/>} />
         <Route path="/time" element={<Clock/>} />
+	      <Route path="/test" element={<Test />} />
        </Routes>
     </Router>
   );
