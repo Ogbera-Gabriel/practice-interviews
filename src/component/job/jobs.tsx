@@ -3,7 +3,7 @@ import "./jobs.css";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
-interface Job { 
+type Job = { 
   id: number;
   title: string;
   type: string;
@@ -54,7 +54,7 @@ const Jobs = () => {
         fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
           .then(response => {
             if (!response.ok) {
-              throw new Error('Network response was not ok');
+              toast.error('Network response was not ok');
             }
             return response.json();
           })
@@ -64,7 +64,7 @@ const Jobs = () => {
       setJobsInfo((prev) => [...prev,...jobInfo]);
       setPage((prev) => prev + 1);
     } catch (error) {
-      toast.error('Error fetching job info:');
+      toast.error(`Error fetching job info: ${error}`,);
     }
   };
 
